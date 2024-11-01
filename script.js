@@ -1,7 +1,7 @@
 // Write the logic to get the computer choice
 
 function getComputerChoice() {
-    randNum = Math.random() * 3;
+    let randNum = Math.random() * 3;
 
     if (randNum < 1) {
         return "rock";
@@ -15,71 +15,70 @@ function getComputerChoice() {
 // Write the logic to get the human choice
 
 function getHumanChoice() {
-    humanChoice = prompt("Enter your choice (rock, paper, scissors): ").toLowerCase();
+    let humanChoice = prompt("Enter your choice (rock, paper, scissors): ").toLowerCase();
 
-    if (humanChoice == "rock" || humanChoice == "paper" || humanChoice == "scissors") {
-        return humanChoice
-    } else {
-        // Return rock as a backup for invalid input
-        return "rock"
+    while (humanChoice !== "rock" && humanChoice !== "paper" && humanChoice !== "scissors") {
+        humanChoice = prompt("Invalid choice. Please enter rock, paper, or scissors: ").toLowerCase();
     }
+    return humanChoice;
 }
 
-// Declare the players score variables
-
-let humanScore = 0;
-let computerScore = 0;
-
-const HUMAN_WIN = 1;
-const DRAW = 0;
-const COMPUTER_WIN = -1;
-
-const NUM_ROUNDS = 5;
-
-
-// Write the logic to play a single round
-
-function playRound(humanChoice, computerChoice) {
-
-    if (humanChoice == "rock") {
-        if (computerChoice == "rock") {
-            console.log("Draw!")
-            return DRAW
-        } else if (computerChoice == "paper") {
-            console.log("You lose! Paper beats Rock.")
-            return COMPUTER_WIN
-        } else {
-            console.log("You win! Rock beats Scissors.")
-            return HUMAN_WIN
-        }
-    } else if (humanChoice == "paper") {
-        if (computerChoice == "rock") {
-            console.log("You win! Paper beats Rock.")
-            return HUMAN_WIN
-        } else if (computerChoice == "paper") {
-            console.log("Draw!")
-            return DRAW
-        } else {
-            console.log("You lose! Scissors beats Paper.")
-            return COMPUTER_WIN
-        }
-    } else if (humanChoice == "scissors") {
-        if (computerChoice == "rock") {
-            console.log("You lose! Rock beats Scissors.")
-            return COMPUTER_WIN
-        } else if (computerChoice == "paper") {
-            console.log("You win! Scissors beats Paper.")
-            return HUMAN_WIN
-        } else {
-            console.log("Draw!")
-            return DRAW
-        }
-    }
-}
+// Write the logic to play the entire game
 
 function playGame() {
 
+    // Declare game constants and variables
+    const HUMAN_WIN = 1;
+    const DRAW = 0;
+    const COMPUTER_WIN = -1;
+
+    const NUM_ROUNDS = 5;
+
+    let humanScore = 0;
+    let computerScore = 0;
+
     let result = 0;
+
+    // Write the logic to play a single round
+
+    function playRound(humanChoice, computerChoice) {
+
+        if (humanChoice == "rock") {
+            if (computerChoice == "rock") {
+                console.log("Draw!")
+                return DRAW
+            } else if (computerChoice == "paper") {
+                console.log("You lose! Paper beats Rock.")
+                return COMPUTER_WIN
+            } else {
+                console.log("You win! Rock beats Scissors.")
+                return HUMAN_WIN
+            }
+        } else if (humanChoice == "paper") {
+            if (computerChoice == "rock") {
+                console.log("You win! Paper beats Rock.")
+                return HUMAN_WIN
+            } else if (computerChoice == "paper") {
+                console.log("Draw!")
+                return DRAW
+            } else {
+                console.log("You lose! Scissors beats Paper.")
+                return COMPUTER_WIN
+            }
+        } else if (humanChoice == "scissors") {
+            if (computerChoice == "rock") {
+                console.log("You lose! Rock beats Scissors.")
+                return COMPUTER_WIN
+            } else if (computerChoice == "paper") {
+                console.log("You win! Scissors beats Paper.")
+                return HUMAN_WIN
+            } else {
+                console.log("Draw!")
+                return DRAW
+            }
+        }
+    }
+
 
     for (let i = 0; i < NUM_ROUNDS; i++) {
         result = playRound(getHumanChoice(), getComputerChoice());
