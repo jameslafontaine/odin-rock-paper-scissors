@@ -35,7 +35,8 @@ function playGame() {
     const DRAW = 0;
     const COMPUTER_WIN = -1;
 
-    const NUM_ROUNDS = 1;
+    const NUM_ROUNDS = 5;
+    const MAX_SCORE = 5;
 
     let humanScore = 0;
     let computerScore = 0;
@@ -82,33 +83,34 @@ function playGame() {
         }
     }
 
-    // Setup functionaly for buttons that player can use to make a choice each round
+    // Setup functionality for buttons that player can use to make a choice each round
     const buttons = document.querySelectorAll("button");
 
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
-            playRound(button.id, getComputerChoice())
+            result = playRound(button.id, getComputerChoice())
+            if (result > 0) {
+                humanScore++;
+            } else if (result < 0) {
+                computerScore++;
+            }
+            runningScore.textContent = `Player: ${humanScore}    Computer: ${computerScore}`;
+            if (humanScore >= MAX_SCORE || computerScore >= MAX_SCORE) {
+                if (computerScore > humanScore) {
+                    outcome.textContent = `The computer wins with a score of ${computerScore}!`
+                } else if (computerScore < humanScore) {
+                    outcome.textContent = `The human wins with a score of ${humanScore}!`
+                } else {
+                    outcome.textContent = "It's a draw!"
+                }
+                // restart the game after showing the final score for 5 seconds
+                setTimeout(() => {
+                    location.reload();
+                }, 5000); // 5000 milliseconds = 5 seconds
+
+            }
         })
     })
-
-    // for (let i = 0; i < NUM_ROUNDS; i++) {
-    //     result = playRound(getHumanChoice(), getComputerChoice());
-
-    //     if (result > 0) {
-    //         humanScore++;
-    //     } else if (result < 0) {
-    //         computerScore++;
-    //     }
-    // }
-
-    if (computerScore > humanScore) {
-        resultsDiv.textContent = `The computer wins with a score of ${computerScore}!`
-    } else if (computerScore < humanScore) {
-        resultsDiv.textContent = `The human wins with a score of ${humanScore}!`
-    } else {
-        resultsDiv.textContent = "It's a draw!"
-    }
-
 }
 
 playGame()
