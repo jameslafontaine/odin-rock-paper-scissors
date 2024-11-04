@@ -27,12 +27,15 @@ function getHumanChoice() {
 
 function playGame() {
 
+    const runningScore = document.querySelector("#runningScore")
+    const outcome = document.querySelector("#outcome")
+
     // Declare game constants and variables
     const HUMAN_WIN = 1;
     const DRAW = 0;
     const COMPUTER_WIN = -1;
 
-    const NUM_ROUNDS = 5;
+    const NUM_ROUNDS = 1;
 
     let humanScore = 0;
     let computerScore = 0;
@@ -45,60 +48,69 @@ function playGame() {
 
         if (humanChoice == "rock") {
             if (computerChoice == "rock") {
-                console.log("Draw!")
+                outcome.textContent = "Draw!"
                 return DRAW
             } else if (computerChoice == "paper") {
-                console.log("You lose! Paper beats Rock.")
+                outcome.textContent = "You lose! Paper beats Rock."
                 return COMPUTER_WIN
             } else {
-                console.log("You win! Rock beats Scissors.")
+                outcome.textContent = "You win! Rock beats Scissors."
                 return HUMAN_WIN
             }
         } else if (humanChoice == "paper") {
             if (computerChoice == "rock") {
-                console.log("You win! Paper beats Rock.")
+                outcome.textContent = "You win! Paper beats Rock."
                 return HUMAN_WIN
             } else if (computerChoice == "paper") {
-                console.log("Draw!")
+                outcome.textContent = "Draw!"
                 return DRAW
             } else {
-                console.log("You lose! Scissors beats Paper.")
+                outcome.textContent = "You lose! Scissors beats Paper."
                 return COMPUTER_WIN
             }
         } else if (humanChoice == "scissors") {
             if (computerChoice == "rock") {
-                console.log("You lose! Rock beats Scissors.")
+                outcome.textContent = "You lose! Rock beats Scissors."
                 return COMPUTER_WIN
             } else if (computerChoice == "paper") {
-                console.log("You win! Scissors beats Paper.")
+                outcome.textContent = "You win! Scissors beats Paper."
                 return HUMAN_WIN
             } else {
-                console.log("Draw!")
+                outcome.textContent = "Draw!"
                 return DRAW
             }
         }
     }
 
+    // Setup functionaly for buttons that player can use to make a choice each round
+    const buttons = document.querySelectorAll("button");
 
-    for (let i = 0; i < NUM_ROUNDS; i++) {
-        result = playRound(getHumanChoice(), getComputerChoice());
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            playRound(button.id, getComputerChoice())
+        })
+    })
 
-        if (result > 0) {
-            humanScore++;
-        } else if (result < 0) {
-            computerScore++;
-        }
-    }
+    // for (let i = 0; i < NUM_ROUNDS; i++) {
+    //     result = playRound(getHumanChoice(), getComputerChoice());
+
+    //     if (result > 0) {
+    //         humanScore++;
+    //     } else if (result < 0) {
+    //         computerScore++;
+    //     }
+    // }
 
     if (computerScore > humanScore) {
-        console.log(`The computer wins with a score of ${computerScore}!`);
+        resultsDiv.textContent = `The computer wins with a score of ${computerScore}!`
     } else if (computerScore < humanScore) {
-        console.log(`The human wins with a score of ${humanScore}!`);
+        resultsDiv.textContent = `The human wins with a score of ${humanScore}!`
     } else {
-        console.log("It's a draw!")
+        resultsDiv.textContent = "It's a draw!"
     }
 
 }
 
 playGame()
+
 
