@@ -2,6 +2,8 @@
 
 A basic Rock Paper Scissors game developed as part of The Odin Project's JavaScript Foundations section. This project demonstrates fundamental JavaScript skills, including conditionals, loops, functions, and user interaction via the console.
 
+- **[2024-11-04]** - Updated to have basic GUI using DOM manipulation and event handlers.
+
 ## Project Description
 
 This console-based game allows the player to compete against the computer in a game of Rock Paper Scissors. The game showcases the use of JavaScript to implement logic and control flow, allowing for interactive gameplay in the console.
@@ -31,9 +33,9 @@ This project demonstrates:
 
 ## Some Future Improvements
 
--   Adding a graphical user interface (GUI) to make the game more visually interactive.
--   Implementing additional rounds or difficulty levels.
--   Enhancing user experience with sound effects and animations for winning rounds.
+- [x] Adding a graphical user interface (GUI) to make the game more visually interactive.
+- [ ] Implementing additional rounds or difficulty levels.
+- [ ] Enhancing user experience with sound effects and animations for winning rounds.
 
 ## License
 
