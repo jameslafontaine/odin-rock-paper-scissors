@@ -4,6 +4,10 @@ A basic Rock Paper Scissors game developed as part of The Odin Project's JavaScr
 
 - **[2024-11-04]** - Updated to have basic GUI using DOM manipulation and event handlers.
 
+## Live Demo
+
+https://jameslafontaine.github.io/odin-rock-paper-scissors/
+
 ## Project Description
 
 This console-based game allows the player to compete against the computer in a game of Rock Paper Scissors. The game showcases the use of JavaScript to implement logic and control flow, allowing for interactive gameplay in the console.
